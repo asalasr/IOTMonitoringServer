@@ -56,11 +56,12 @@ def analyze_data():
                 client.publish(topic, message)
                 alerts += 1
             else:
-                message = "ALERT {} {} {}".format(variable, min_value, max_value)
-                topic = '{}/{}/{}/{}/in'.format(country, state, city, user)
-                print(datetime.now(), "Sending alert to {} {}".format(topic, variable))
-                client.publish(topic, message)
-                alerts += 1
+                if variable != 'ruido':
+                    message = "ALERT {} {} {}".format(variable, min_value, max_value)
+                    topic = '{}/{}/{}/{}/in'.format(country, state, city, user)
+                    print(datetime.now(), "Sending alert to {} {}".format(topic, variable))
+                    client.publish(topic, message)
+                    alerts += 1
 
     print(len(aggregation), "dispositivos revisados")
     print(alerts, "alertas enviadas")
