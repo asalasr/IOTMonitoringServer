@@ -51,7 +51,7 @@ def analyze_data():
         if alert:
             if  item["check_value"] > (max_value*2) and variable =='humedad':
                 message = "Cierre de Sistema {} {} {}".format(variable, min_value, max_value)
-                topic = '{}/{}/{}/{}/ Cierre Planta'.format(country, state, city, user)
+                topic = '{}/{}/{}/{}/in'.format(country, state, city, user)
                 print(datetime.now(), "Sending Expecial alert to {} {}".format(topic, variable))
                 client.publish(topic, message)
                 alerts += 1
